@@ -33,7 +33,7 @@
 3. **M3**：Vue 看板 + 基础图表  
 4. **M4**：Prometheus 指标与压测脚本  
 
-详见 `docs/ROADMAP.md`。
+详见 `docs/ROADMAP.md`、`docs/CHECKLIST-M0.md`。
 
 ## 定制合作（可报价）
 
