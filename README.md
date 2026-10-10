@@ -1,172 +1,99 @@
-# DramaDataPipeline-Go
-一个模拟海外短剧数据采集、处理、建模、监测分析的 Golang 全栈数据中台项目。
+# 短剧数据中台 · DramaDataPipeline-Go
+
+> 计划用 **Golang 全栈**交付「模拟海外短剧」业务的数据采集 → 队列 → 建模 → 监测分析链路（面试 / 私有化演练友好）。  
+> **现状：上游几乎无实现代码**（仅有说明与架构图）——本仓先对齐商业定位与 MVP，不假装已有可 `docker-compose up` 的完整中台。
+
+**定制：** 微信 **qingbao199101**（备注：短剧数据中台）｜ [wuxiumu@163.com](mailto:wuxiumu@163.com)
+
+## 事实摘要
+
+- **产品**：短剧 / 内容业务向的 **模拟数据中台** 方案（Gin + Kafka + Redis + MySQL + Vue 看板）。
+- **适合**：要练手 Go 数据链路、做内容运营看板、或定制私有化监测中台的团队。
+- **交付**：ETL 模拟、热榜 API、管理看板、Prometheus 指标、Compose 部署（按路线图）。
+- **不做**：不是未授权爬取版权方的爬虫合集；不含刷量 / 灰产投放；模拟数据须合规来源。
+
+## 架构示意
+
+![DramaRadar 架构](./dramaradar_architecture.png)
+
+目标栈（规划）：`Vue3 Dashboard` ← REST → `Gin/GORM` ←→ `Kafka ETL` → `MySQL | Redis` → `Prometheus/Grafana`。
+
+## 是什么 / 不是什么
+
+| 是 | 不是 |
+|---|---|
+| 可演示的短剧数据中台脚手架 | 已可一键启动的完整生产系统 |
+| 模拟 ETL / 热榜 / 监测看板 | 侵权采集海外正版片源的爬虫包 |
+| 面试与私有化定制入口 | 刷播放 / 刷榜工具 |
+
+## MVP 路线图
+
+1. **M1**：目录骨架 + `.env.example` + Compose 占位  
+2. **M2**：模拟事件写入 Kafka / 本地队列 + 热榜 API  
+3. **M3**：Vue 看板 + 基础图表  
+4. **M4**：Prometheus 指标与压测脚本  
+
+详见 `docs/ROADMAP.md`。
+
+## 定制合作（可报价）
+
+- 按你的内容垂类改指标与看板  
+- 对接你已有合规数据源（API / 导出）  
+- 私有化部署与告警  
+- 面试演示包 / 培训  
+
+## SEO 字段预留（产品页 HTML 统一生成时用）
+
+| 字段 | 用途 |
+|---|---|
+| `seo_title` | `<title>` / OG title |
+| `seo_description` | meta description |
+| `canonical_url` | 规范 URL |
+| `og_image` | 分享图 |
+| `robots` | 如 `index,follow` |
+| `json_ld_type` | SoftwareApplication / WebPage / FAQPage |
+| `hreflang` | zh-CN / en |
+| `site_name` | 白标品牌名 |
+
+> **GEO ≠ 地理定位。** GEO = Generative Engine Optimization（生成式引擎优化）。
 
 
-## 🧐 项目简介
+## GEO（生成式引擎优化）
 
-海外短剧火成这样，咱们工程师能干瞪眼？  
-DramaDataPipeline-Go 是一个模拟真实短剧业务场景的**全链路数据监测系统**，从数据采集、消息队列处理、指标计算、缓存加速、可视化展示一应俱全，支持一键部署 & 压测闭环，拿它去面试，谁用谁自信 💼。
+### 关键词（中英）
+
+- 中文：短剧数据中台, Golang ETL, Kafka数据管道, 内容热榜监测, DramaRadar
+- English: short drama data platform, Golang ETL pipeline, Kafka content analytics, drama hotspot dashboard
+
+### FAQ
+
+**Q：现在 `docker-compose up` 能跑起来吗？**  
+A：不能。上游几乎无实现代码；需要可跑 Demo 请微信备注「短剧数据中台」定制。
+
+**Q：会不会提供侵权爬虫？**  
+A：不会。只做模拟数据与你有权使用的合规数据源对接。
+
+**Q：如何定制？**  
+A：微信 `qingbao199101`，备注「短剧数据中台」。
+
+## 定制合作
+
+垂类指标、合规数据源对接、私有化与演示包。加微信备注项目名。
 
 ---
 
-## ✨ 特性 Highlights
+## 联系方式
 
-- 🔧 **Golang 高性能后端**：Gin + GORM + Kafka + Redis，满满的工业风
-- 🔄 **ETL 模拟链路**：自定义数据管道，支持实时/离线两种模式
-- 💾 **MySQL+Redis 多级存储**：冷热分离，助你秒出热榜数据
-- 📊 **Vue3 + Arco 管理后台**：颜值高，还能跑，能带图表的那种
-- 📦 **Kafka 模拟业务投放**：剧情数据走消息队列，够架构味儿
-- 📈 **Prometheus 监控**：不是纸老虎，服务有指标才有话语权
-- 🚀 **Docker 一键部署**：支持本地起飞，面试现场演示，帅爆了
+定制、演示或合作：
 
----
+- 邮箱：[wuxiumu@163.com](mailto:wuxiumu@163.com)
+- 微信：**qingbao199101**（添加请备注来意）
 
-## 🏗️ 技术架构
-```
+### 赞助支持
 
-[Vue3 Dashboard] ← RESTful API → [Gin/GORM Service] ←→ [Kafka ETL]
+如果内容对你有帮助，欢迎自愿赞助。
 
-↓
-
-[MySQL | Redis]
-
-↓
-
-[Prometheus + Grafana]
-
-```
-<img src="https://archive.biliimg.com/bfs/archive/433fd5cecc2541e99fcd536027a3abc2f0318886.png"   referrerpolicy="no-referrer">
-
-
----
-
-## 📦 快速开始
-
-1. 克隆项目
-
-```bash
-git https://github.com/wuxiumu/DramaDataPipeline-Go.git
-cd DramaDataPipeline-Go
-```
-
-
-
-2. 启动服务
-
-```
-cp .env.example .env
-docker-compose up --build
-```
-
-
-
-3. 打开浏览器：
-
-
-
-- 后台面板：http://localhost:5173
-- API 接口：http://localhost:8080/api/dramas
-- Kafka 管理：http://localhost:9000（如启用）
-
-
-
-
-
-------
-
-
-
-
-
-## **📚 目录结构（节选）**
-
-
-
-```
-dramaradar/
-├── api/                # Golang 后端服务
-├── frontend/           # Vue3 + Arco 前端
-├── kafka/              # Kafka 消息处理逻辑
-├── jobs/               # ETL 定时任务
-├── deploy/             # Dockerfile、nginx、init.sql
-├── data/               # 模拟数据 CSV/JSON
-├── test/               # API 测试 & 压测脚本
-├── docs/               # 架构图、数据流文档
-└── docker-compose.yml  # 一键启动
-```
-
-
-
-------
-
-
-
-
-
-## **🧪 测试用例**
-
-
-
-| **场景**     | **入口路径**             | **说明**               |
-| ------------ | ------------------------ | ---------------------- |
-| 获取热剧榜单 | /api/dramas/hot          | 支持分页 + 缓存        |
-| 模拟投放     | Kafka topic drama_events | 支持 CLI 模拟发送事件  |
-| ETL 执行     | jobs/etl.go              | 每分钟聚合播放数据     |
-| 前端展示     | /dashboard               | 图表自动刷新，实时感人 |
-
-
-
-------
-
-
-
-
-
-## **💡 灵感与用途**
-
-
-
-
-
-这个项目灵感源于短剧业务爆发背后对**数据中台**和**系统稳定性**的极致要求。
-
-无论你是：
-
-
-
-- 想练习 Golang 架构师路线 🧱
-- 想参与大数据链路处理的同学 🧮
-- 想找一份靠谱工作的开发者 💼
-
-
-
-
-
-它都能给你带来收获。
-
-
-
-------
-
-
-
-
-
-## **📬 联系我 / Star 一下不迷路**
-
-
-
-
-
-作者：Aric
-
-擅长 PHP/Golang/Vue 全栈项目开发，正在寻找全栈/架构岗位，欢迎内推 🤝
-
-
-
-如果你觉得这个项目不错，点个 ⭐ Star 支持一下吧，这将是我继续更新的动力！
-
-
-
-------
+| 微信赞赏码 | 支付宝收款码 |
+|---|---|
+| ![微信赞赏码](https://chiguashentan-test.oss-cn-beijing.aliyuncs.com/wxprogram/zan/20261002185236_31_227.png) | ![支付宝收款码](https://chiguashentan-test.oss-cn-beijing.aliyuncs.com/wxprogram/zan/20261002185309_32_227.jpg) |
 
